@@ -1,0 +1,1 @@
+A F# library for retrieving the price of an Amazon product.
