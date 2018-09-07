@@ -19,28 +19,22 @@ module Amazon =
             | Float f -> Some f
             | _ -> None
 
-    let private getPriceFromHtmlDocumentForCssSelector cssSelector (doc:HtmlDocument) = 
+    let private tryGetInnerText cssSelector (doc:HtmlDocument) = 
         doc.CssSelect(cssSelector) 
-                |> Seq.tryFind(fun _ -> true)
-                |> function
-                    | Some node -> node.InnerText() |> parseTextToFloat
-                    | None -> None
+        |> Seq.tryFind(fun _ -> true)
+        |> Option.bind (fun node -> node.InnerText() |> Some)
 
     let private getDealPriceFromHtmlDocument (doc:HtmlDocument) = 
-        getPriceFromHtmlDocumentForCssSelector "#priceblock_dealprice" doc
-        |> function 
-            | Some result -> Some result
-            | None ->  
-                getPriceFromHtmlDocumentForCssSelector "#priceblock_ourprice" doc
-                |> function
-                    | Some result -> Some result 
-                    | None -> getPriceFromHtmlDocumentForCssSelector ".offer-price" doc
+        tryGetInnerText "#priceblock_dealprice" doc
+        |> Option.orElseWith (fun () -> tryGetInnerText "#priceblock_ourprice" doc)
+        |> Option.orElseWith (fun () -> tryGetInnerText ".offer-price" doc)
+        |> Option.bind parseTextToFloat
     
     let private getPriceInformationFromHtmlDocument (doc:HtmlDocument) = getDealPriceFromHtmlDocument doc
     let private getPriceForValidUrl url = (>>) getDocument getPriceInformationFromHtmlDocument url
 
     let getPrice url = 
-        isAValidAmazonProductUrl url 
+        isAValidAmazonProductUrl url
         |> function
             | true -> getPriceForValidUrl url
             | false -> None
