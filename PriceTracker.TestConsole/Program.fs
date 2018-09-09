@@ -7,6 +7,8 @@ let printAmazonPrice url = Amazon.getPrice url |> printf "%A \n"
 let main argv =
     let urls = 
         [|
+            "https://www.google.com/"; //Error InvalidPriceProviderUrl
+            "https://www.amazon.fr/"; //Error NoPriceFound;
             "https://www.amazon.fr/gp/product/B0756CYWWD";
             "https://www.amazon.fr/Jabra-Speak-Haut-parleur-Bluetooth-Noir/dp/B00ANI7HI2";
             "https://www.amazon.fr/gp/product/1439148813";
