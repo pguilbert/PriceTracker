@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="CommonLibrary.fs" />
+    <Compile Include="Types.fs" />
     <Compile Include="Library.fs" />
     <Compile Include="Amazon.fs" />
   </ItemGroup>

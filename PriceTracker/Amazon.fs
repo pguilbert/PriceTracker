@@ -1,10 +1,12 @@
-﻿namespace PriceTracker.Amazon
+﻿namespace PriceTracker
 
 
-module Amazon = 
-    open PriceTracker.Common
+module Amazon =
+    open PriceTracker.CommonLibrary
+    open PriceTracker.Library
     open FSharp.Data
     open System.Text.RegularExpressions
+    open PriceTracker
  
     let private isAValidAmazonProductUrl (url:string) = url.StartsWith("https://www.amazon")
 
