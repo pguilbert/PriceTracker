@@ -1,5 +1,5 @@
 ﻿open System
-open PriceTracker.Amazon
+open PriceTracker
 
 let printAmazonPrice url = Amazon.getPrice url |> printf "%A \n"
 
