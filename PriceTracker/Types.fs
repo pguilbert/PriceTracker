@@ -7,3 +7,6 @@ module Types =
         InvalidPriceProviderUrl 
         | NetworkError of string
         | NoPriceFound
+
+    type Price = { Value:float ; Currency:string }
+
