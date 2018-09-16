@@ -28,3 +28,16 @@ let ``When URL is ok expect price``() =
             | Result.Ok _ -> true
             | Result.Error _ -> false
     Assert.True(test)
+    
+[<Theory>]
+[<InlineData("https://www.amazon.fr/dp/1509808310", "EUR")>]
+[<InlineData("https://www.amazon.ca/dp/1509808310", "CAD")>]
+[<InlineData("https://www.amazon.co.uk/dp/1509808310", "GBP")>]
+[<InlineData("https://www.amazon.com/dp/1509808310", "USD")>]
+let ``When URL is ok check currency result``(url, currency) =
+    let test = 
+        Amazon.getPrice url 
+        |> function
+            | Result.Ok price -> price.Currency = currency
+            | Result.Error _ -> false
+    Assert.True(test)
