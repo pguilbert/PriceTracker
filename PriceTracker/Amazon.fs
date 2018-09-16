@@ -7,12 +7,12 @@ module Amazon =
     open FSharp.Data
     open System.Text.RegularExpressions
     open PriceTracker
-    open System.Globalization
  
     let private isAValidAmazonProductUrl (url:string) = url.StartsWith("https://www.amazon")
 
     //See the link bellow to complete this list:
     //https://docs.microsoft.com/fr-fr/dotnet/api/system.globalization.regioninfo.isocurrencysymbol?redirectedfrom=MSDN&view=netframework-4.7.2#System_Globalization_RegionInfo_ISOCurrencySymbol
+    /// Translate the amazon currency notation to the ISO 4217 currency symbol
     let private getCurrencyCode (txt:string) =
         match txt with
         | x when x.Contains("EUR") -> "EUR"

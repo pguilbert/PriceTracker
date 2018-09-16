@@ -4,7 +4,6 @@ namespace PriceTracker
 
 module CommonLibrary = 
     open System.Globalization
-    open FSharp.Data.Runtime.WorldBank
     
     let optionToResult errorIfNone = 
         function
@@ -20,6 +19,5 @@ module CommonLibrary =
         |> function
         | (true,float) -> Some(float)
         | _ -> None
-
 
 

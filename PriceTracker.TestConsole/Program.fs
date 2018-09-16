@@ -9,6 +9,7 @@ let main argv =
         [|
             "https://www.google.com/"; //Error InvalidPriceProviderUrl
             "https://www.amazon.fr/"; //Error NoPriceFound;
+            "https://www.amazon.fr/flmdjsfljfgdsf";
             "https://www.amazon.fr/gp/product/B0756CYWWD";
             "https://www.amazon.com/dp/B01DFKC2SO";
             "https://www.amazon.ca/Holmes-Blizzard-7-Inch-Oscillating-Table/dp/B000J07RMU";
