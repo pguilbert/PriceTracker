@@ -3,9 +3,6 @@
 module Library =
     open FSharp.Data
     open System.Net
-
-
-    
     
     let getDocument url = 
 
@@ -33,8 +30,8 @@ module Library =
         | :? System.Net.WebException as ex -> 
             match ex with
             | StatusCodeNotFound -> Message.UrlNotFoundOnTheProviderServer |> Result.Error
-            | NetworkError -> Message.NetworkError ex.Message |> Result.Error
-            | ServerError -> Message.GenericServerError |> Result.Error
+            | NetworkError -> Message.NetworkError ex |> Result.Error
+            | ServerError -> Message.GenericServerError ex |> Result.Error
             | _ -> Message.UnknownError ex |> Result.Error
         //Throw all other type of exception
 

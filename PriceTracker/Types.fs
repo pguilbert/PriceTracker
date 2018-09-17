@@ -4,11 +4,11 @@
 module Types =
 
     type Message = 
-        InvalidPriceProviderUrl 
-        | UrlNotFoundOnTheProviderServer
-        | GenericServerError
-        | NetworkError of string
         | NoPriceFound
+        | InvalidPriceProviderUrl 
+        | UrlNotFoundOnTheProviderServer
+        | NetworkError of exn
+        | GenericServerError of exn
         | UnknownError of exn
 
     type Price = { Value:float ; Currency:string }
