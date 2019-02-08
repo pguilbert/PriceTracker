@@ -11,5 +11,8 @@ module Types =
         | GenericServerError of exn
         | UnknownError of exn
 
-    type Price = { Value:float ; Currency:string }
+    type Price = { 
+        Value:float; 
+        Currency:string;
+    }
 
