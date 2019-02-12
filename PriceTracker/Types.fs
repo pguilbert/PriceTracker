@@ -16,3 +16,10 @@ module Types =
         Currency:string;
     }
 
+    type Product = {
+        Id:string;
+        Label:string;
+        Urls:string[];
+    }
+
+
