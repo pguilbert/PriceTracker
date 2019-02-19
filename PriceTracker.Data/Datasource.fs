@@ -1,12 +1,9 @@
-﻿open System
-open PriceTracker
-open PriceTracker.Data
+﻿namespace PriceTracker.Data
 
-let printAmazonPrice url = Amazon.getPrice url |> printf "%A \n"
+module Datasource = 
+    open PriceTracker
 
-[<EntryPoint>]
-let main argv =
-    let demoProducts = 
+    let getSavedProducts =
         [|
             {Id="EAF236FD-4349-47A2-B32F-85C21D9E06CA"; Label="Not Found"; Urls=[|"https://www.google.com/" |]};
             {Id="68EB1063-6C69-4333-B0EF-D22576819E21"; Label="Not Found"; Urls=[|"https://www.amazon.fr/" |]};
@@ -20,20 +17,7 @@ let main argv =
             {Id="E226888F-5D48-457B-87BF-500FDD26164C"; Label="SnowCinda Bracelet pour Fitbit Alta "; Urls=[|"https://www.amazon.fr/gp/product/B075CXJN6D/ref=crt_ewc_title_oth_1?ie=UTF8&psc=1&smid=A1X9LI0R1YTO2J" |]};
             {Id="13BD30B8-78D5-47FD-9F9C-1D38ACB95EFE"; Label="Fire TV Stick | Basic Edition"; Urls=[|"https://www.amazon.fr/gp/product/B01ETRGE7M" |]};
         |]
-    
-    let getDemoSavedProducts = 
-        Datasource.getSavedProducts
-            |>  fun products ->
-                if Array.isEmpty(products) then 
-                    demoProducts 
-                    |> Array.iter Datasource.saveNewProduct
-                    |> fun _ -> Datasource.getSavedProducts
-                else products;
 
-    getDemoSavedProducts 
-        |> Array.map (fun p -> p.Urls) 
-        |> Array.concat 
-        |> Array.iter printAmazonPrice 
+    let saveNewProduct (product:Product) = ()
 
-    Console.Read() |> ignore
-    0
+

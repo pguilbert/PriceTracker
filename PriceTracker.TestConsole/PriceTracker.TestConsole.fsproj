@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PriceTracker.Data\PriceTracker.Data.fsproj" />
     <ProjectReference Include="..\PriceTracker\PriceTracker.fsproj" />
   </ItemGroup>
 
